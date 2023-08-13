@@ -1,0 +1,83 @@
+:root {
+  --gray85: #1b1b32;
+  --gray05: #eeeef0;
+}
+
+pre {
+  overflow-x: auto;
+  margin: 1rem 0;
+  padding: 20px;
+  position: relative;
+  max-width: 100%;
+  color: var(--gray85);
+  font-size: 16px;
+  line-height: 1.5em;
+  background: var(--gray05);
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre code {
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+  background: 0 0;
+}
+
+pre code::-webkit-scrollbar {
+  width: 5px;
+}
+
+.at_copy {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  background: green;
+  color: #fff;
+  padding: 5px 12px;
+  border: 0;
+  z-index: 9;
+}
+/* optional*/
+pre > button {
+  opacity: 0;
+}
+pre:hover > button {
+  opacity: 1;
+  transition: all 1s ease-out;
+}
+pre > button:active,
+pre > button:focus {
+  opacity: 1;
+  transition: all 1s ease-out;
+}
+
+textarea {
+  width:100%;
+}
+
+pre {
+	color: #FFF;
+	background-color: #000;
+
+}
+
+
+
+.header {
+    border-bottom: 1px solid #e5e5e5;
+}
+.user-select-none {
+    -webkit-user-select: none!important;
+    -moz-user-select: none!important;
+    -ms-user-select: none!important;
+    user-select: none!important;
+}
