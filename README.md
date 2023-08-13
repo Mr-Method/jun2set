@@ -48,9 +48,9 @@ set system processes general-authentication-service traceoptions file size 10k
 set system processes general-authentication-service traceoptions file files 3
 set system processes general-authentication-service traceoptions flag all
 ```
-Швидкого рішення я не знайшов, крім того команди з конвертера працюють належним чином, тому лишаю як є.  
+Оскільки команди з конвертера працюють належним чином, а швидкого рішення я не знайшов, тому лишаю як є, тим більше що цей баг є суто естетичним. 
 
 ## Допомога
-Моя стихія це бекенд на Perl, верстка - це не моє :stuck_out_tongue_winking_eye:, тому будь-якє вдосконалення верстки чи коду конвертера вітаються!
+Моя стихія це бекенд на Perl, верстка - це не моє :stuck_out_tongue_winking_eye:, тому будь-яке вдосконалення верстки чи коду конвертера вітаються!
 
 Не прошу фінансової допомоги, а прошу допомоги у вдосконаленні інструменту.
