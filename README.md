@@ -1,3 +1,11 @@
+<p align="center">
+  <a href="https://github.com/Mr-Method/jun2set" target="_blank" rel="noopener"><img width="100" src="https://raw.githubusercontent.com/Mr-Method/jun2set/main/favicon.ico" alt="jun2set logo"></a>
+</p>
+
+<p align="center">
+  <a href="https://stand-with-ukraine.pp.ua"><img src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg" alt="#StandWithUkraine" /></a>
+</p>
+
 [![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://vshymanskyy.github.io/StandWithUkraine/)
 
 
