@@ -9,25 +9,33 @@ date: 2023.08.13
 
 const btnConvert = document.querySelector('[data-convert]');
 const btnClean = document.querySelector('[data-clear]');
+const btnDemo = document.querySelector('[data-demo]');
 const outputBlock = document.querySelector('.output');
 const codeBlock = document.getElementById('textout');
 let setInstance = "";
 
 btnConvert.addEventListener('click', doConvert);
 btnClean.addEventListener('click', destroyBoxes);
+btnDemo.addEventListener('click', setDemo);
 const dptree = {};
 
-function SetDPTree(commands, mode, leaf) {
+function setDPTree(commands, mode, leaf) {
   let str = commands.join(' ');
   if ( dptree[mode] === undefined ) dptree[mode] = {};
   if ( dptree[mode][str] === undefined ) dptree[mode][str] = leaf;
 }
 
-function GetDPTree(commands, mode) {
+function getDPTree(commands, mode) {
   let str = commands.join(' ');
   if ( dptree[mode] === undefined || dptree[mode][str] === undefined ) return;
   setInstance += dptree[mode][str];
   delete dptree[mode][str];
+}
+
+function setDemo (e) {
+  document.getElementById("textin").value = 
+    "system {\n    processes {\n        general-authentication-service {\n            traceoptions {\n" +
+    "                file gas.log size 10k files 3;\n                flag all;\n            }\n        }\n    }\n}";
 }
 
 function FiltrInactive(leaf) {
@@ -112,19 +120,19 @@ function doConvert() {
             a = a.replace('inactive: ', '');
             const linactive = [...tree];
             linactive[0] = 'deactivate';
-            SetDPTree(tree, 'inactive_array', retSetCommand(linactive, a));
+            setDPTree(tree, 'inactive_array', retSetCommand(linactive, a));
           } else if (a.includes('protect: ')) {
             a = a.replace('protect: ', '');
             const lprotect = [...tree];
             lprotect[0] = 'protect';
-            SetDPTree(tree, 'protect_line', retSetCommand(lprotect, a));
+            setDPTree(tree, 'protect_line', retSetCommand(lprotect, a));
           }
           b.split(' ').forEach(function (item) {
             if (!item.includes(']')) {
               setInstance += retSetCommand(tree, a+' '+item);
             } else {
-              GetDPTree(tree, 'inactive_array');
-              GetDPTree(tree, 'protect_array');
+              getDPTree(tree, 'inactive_array');
+              getDPTree(tree, 'protect_array');
             }
           });
           // alert(retSetCommand(tree, cleanElem.split(';')[0]));
@@ -133,20 +141,20 @@ function doConvert() {
             cleanElem = cleanElem.replace('inactive: ', '');
             const linactive = [...tree];
             linactive[0] = 'deactivate';
-            SetDPTree(tree, 'inactive_line', retSetCommand(linactive, FiltrInactive(cleanElem.replace(/\;\s*.*/, '')))); //.split(' ')[0]
+            setDPTree(tree, 'inactive_line', retSetCommand(linactive, FiltrInactive(cleanElem.replace(/\;\s*.*/, '')))); //.split(' ')[0]
           } else if (cleanElem.includes('protect: ')) {
             cleanElem = cleanElem.replace('protect: ', '');
             const lprotect = [...tree];
             lprotect[0] = 'protect';
-            SetDPTree(tree, 'protect_line', retSetCommand(lprotect, cleanElem.replace(/\;\s*.*/, '')));
+            setDPTree(tree, 'protect_line', retSetCommand(lprotect, cleanElem.replace(/\;\s*.*/, '')));
           }
           setInstance += retSetCommand(tree, cleanElem.replace(/\;\s*.*/, ''));
         }
-        GetDPTree(tree, 'inactive_line');
-        GetDPTree(tree, 'protect_line');
+        getDPTree(tree, 'inactive_line');
+        getDPTree(tree, 'protect_line');
       } else if (cleanElem === '}') {
-        GetDPTree(tree, 'inactive_block');
-        GetDPTree(tree, 'protect_block');
+        getDPTree(tree, 'inactive_block');
+        getDPTree(tree, 'protect_block');
         tree.pop();
       } else {
         cleanElem = cleanElem.replace(' {', '');
@@ -155,13 +163,13 @@ function doConvert() {
           const linactive = [...tree];
           linactive[0] = 'deactivate';
           tree.push(cleanElem);
-          SetDPTree(tree, 'inactive_block', retSetCommand(linactive, cleanElem));
+          setDPTree(tree, 'inactive_block', retSetCommand(linactive, cleanElem));
         } else if (cleanElem.includes('protect: ')) {
           cleanElem = cleanElem.replace('protect: ', '');
           const lprotect = [...tree];
           lprotect[0] = 'protect';
           tree.push(cleanElem);
-          SetDPTree(tree, 'protect_block', retSetCommand(lprotect, cleanElem));
+          setDPTree(tree, 'protect_block', retSetCommand(lprotect, cleanElem));
         } else {
           tree.push(cleanElem);
         }
