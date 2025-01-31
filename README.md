@@ -54,3 +54,5 @@ set system processes general-authentication-service traceoptions flag all
 Моя стихія це бекенд на Perl, верстка - це не моє :stuck_out_tongue_winking_eye:, тому будь-яке вдосконалення верстки чи коду конвертера вітаються!
 
 Не прошу фінансової допомоги, а прошу допомоги у вдосконаленні інструменту.
+
+![Alt](https://repobeats.axiom.co/api/embed/8c33cfe8bf30605f006385c9d1d96384fb5277ad.svg "Repobeats analytics image")
